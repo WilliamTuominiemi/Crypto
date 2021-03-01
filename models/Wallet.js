@@ -2,30 +2,27 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 // Schema
-const ItemSchema = new Schema(
+const WalletSchema = new Schema(
 	{
-		title: {
+		username: {
 			type: String,
 			required: true,
 		},
-		desc: {
+		googleId: {
 			type: String,
 			required: true
 		},
-		image_name: {
+		crypto: {
 			type: String,
 			required: true		
 		},
-		price: {
+		currency: {
 			type: String,
 			required: true
-		},
-		review: {
-			type: Array
 		}
 	},
 	{ timestamps: true }
 )
 
 // Model
-module.exports = mongoose.model('Item', ItemSchema)
+module.exports = mongoose.model('Wallet', WalletSchema)
