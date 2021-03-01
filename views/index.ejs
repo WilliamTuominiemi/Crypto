@@ -4,34 +4,8 @@
 	<body>
 		<%- include("./partials/nav.ejs") %>
 
-        <div class="products">
-            <% items.forEach(item => { %>
-                <a href=<%=item._id%>> 
-                    <div class="product">
-                        <h1> <%= item.title %> </h1>
-                        <% let amount = 0.00 %>
-                        <% let total = 0.00 %>
-
-                        <% item.review.forEach(review => { %>
-                            <% amount = amount + 1.00 %>
-                            <% total = total + parseFloat(review.rating) %>
-                        <% }) %>
-
-                        <% let average = total / amount %>
-
-                        <% for(i = 0; i < Math.round(average); i++) { %>
-                            <img class="star_image" src='/images/star.png' alt="star" height=25px width=25px>                         
-                        <% } %>
-
-                            <br />
-                            <br />
-
-                        <% const imageUrl = '/images/'+item.image_name.toString() %>
-                        <img class="logo" src=<%= imageUrl %> alt=<%= item.title %> height=125px width=200px>                    
-                        <h2> <%= item.price %> </h2>
-                    </div>
-                </a>
-            <% }) %>
+        <div class="main-data">
+            <p> buy GloCoin</p>
         </div>
         
         
