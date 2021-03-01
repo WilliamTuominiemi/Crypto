@@ -7,7 +7,7 @@ const mongoose = require('mongoose')
 const session = require('express-session')
 const MongoStore = require('connect-mongo')(session)
 
-const post = require('./routes/post')
+const transaction = require('./routes/transaction')
 const auth = require('./routes/auth')
 const index = require('./routes/index')
 const pay = require('./routes/pay')
@@ -19,6 +19,7 @@ const ejs = require('ejs')
 const paypal = require('paypal-rest-sdk')
 
 var nodemailer = require('nodemailer');
+const Transaction = require('./models/Transaction')
 
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
@@ -96,7 +97,7 @@ app.get('/sendmail', (req,res) => {
 })
 
 // Routes
-app.use('/posts', post)
+app.use('/transaction', transaction)
 app.use('/auth', auth)
 app.use('/', index)
 
