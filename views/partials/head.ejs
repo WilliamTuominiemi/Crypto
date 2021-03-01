@@ -1,0 +1,183 @@
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8" />
+	<meta
+		name="viewport"
+		content="width=device-width, initial-scale=1, shrink-to-fit=no"
+	/>
+
+
+
+	<!-- Bootstrap CSS -->
+			<link
+		rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+		crossorigin="anonymous"
+	/>
+	
+
+	<style>	
+		.reviews {
+			width: 50%;
+			padding-top: 50px;
+			margin: auto;
+			
+		}
+
+		.review {
+			text-align: left;
+			border: 2px solid black;
+			padding: 10px;
+			margin-top: 10px;
+			color:black;
+			text-decoration: none; 
+			background-color: none;
+		}
+
+		.cart_image {
+			float: left;
+			padding: 10px;
+		}
+
+		input[type=submit] {
+			background-color: #CD5C5C;
+			border: none;
+			color: white;
+			padding: 10px 20px;
+			text-decoration: none;
+			margin: 2px 1px;
+			cursor: pointer;
+			}
+
+		.cart-buy {
+			width: 45%;
+			float: left;
+			margin: 25px; 
+			text-align: center;
+		}
+
+		.cart-items {
+			width: 45%;
+			float: left;
+			margin: 25px;
+		}
+
+		.cart-item {
+			text-align: left;
+			border: 2px solid black;
+			padding: 10px;
+			margin-top: 10px;
+			color:black;
+			text-decoration: none; 
+			background-color: none;
+		}
+
+		.orders {
+			margin: auto;
+			width: 50%;
+		}
+
+		.order {
+			text-align: center;
+			border: 2px solid black;
+			padding: 10px;
+			margin-top: 10px;
+			color:black;
+			text-decoration: none; 
+			background-color: none;
+
+		}
+
+		.prod {
+			margin: auto;
+			width: 50%;
+			text-align: center;
+		}
+
+		.prod_img {
+			float: left;
+			margin: 10px;
+		}
+
+		.prod_info {
+			margin: 10px;
+
+		}
+
+		.products {
+			margin: auto;
+			height: 300px;
+			width: 50%;
+		}
+
+		.product {
+			float: left;
+			text-align: center;
+			border: 2px solid black;
+			margin: 20px;
+			padding: 10px;
+			color:black;
+			text-decoration: none; 
+			background-color: none;
+		}
+
+		.delete	{
+			float: right;
+		}
+
+		.dropbtn {
+			margin-left: 10px;
+			font-size: 16px;
+			border: none;
+
+		}
+
+		.dropdown {
+			position: relative;
+			display: inline-block;
+		}
+
+		.dropdown-content {
+			right: 0;
+			display: none;
+			position: absolute;
+			background-color: #f1f1f1;
+			min-width: 160px;
+			box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+			z-index: 1;
+		}
+
+		.dropdown-content a {
+			color: black;
+			padding: 12px 16px;
+			text-decoration: none;
+			display: block;
+		}
+
+		.dropdown-content a:hover {background-color: #ddd;}
+
+		.dropdown:hover .dropdown-content {display: block;}
+
+		.dropdown:hover .dropbtn {background-color: #C0C0C0;}	
+	</style>
+
+	<script>
+		_spBodyOnLoadFunctionNames.push("GetUrl");  
+		
+		function GetUrl() {
+		var referrer =  document.referrer;
+		//alert(referrer);
+		}
+		
+		function SecondLast(){
+		var x=history.go(-2);
+		//alert(x);
+		}
+		
+	
+	</script>
+
+
+	<title><%= title %> · Store</title>
+</head>

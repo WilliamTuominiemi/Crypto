@@ -1,0 +1,19 @@
+{
+  "name": "cryptotoken",
+  "version": "1.0.0",
+  "description": "��#\u0000 \u0000C\u0000r\u0000y\u0000p\u0000t\u0000o\u0000\r\u0000 \u0000",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WilliamTuominiemi/Crypto.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WilliamTuominiemi/Crypto/issues"
+  },
+  "homepage": "https://github.com/WilliamTuominiemi/Crypto#readme"
+}

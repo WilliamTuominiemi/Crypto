@@ -1,0 +1,43 @@
+<div
+	class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm"
+>
+	<!-- Logo -->
+	<h3 class="my-0 mr-md-auto font-weight-normal"> <a href="/" >Store</a> </h3>
+	<!-- Links -->
+	<nav class="my-2 my-md-0 mr-md-3">
+		<!-- <a class="p-2 text-dark" href="/">Home</a> -->
+		<!-- <a class="p-2 text-dark" href="/posts/add">Add Post</a> -->
+		<!-- <a class="p-2 text-dark" href="/profile">Profile</a> -->
+	</nav>
+	<!-- Sign in button -->
+	<!-- <a class="btn btn-outline-dark" href="/auth/google">Sign in</a> -->
+	<% if(user === "undefined") { %>
+		<a href="/auth/google">
+			<img alt="SignIn" src="https://www.oncrashreboot.com/images/create-apple-google-signin-buttons-quick-dirty-way-google.png"
+			width="157,5" height="37,5">
+		</a>
+	<% } else { %>
+		<h5> Hello, <%= user.displayName %> </h5>
+	<% } %>
+	
+	<a href="/cart"> <img src="/images/cart.png" height="50" width="50"> </a>
+
+
+	<div class="dropdown">	
+		<button class="dropbtn">
+			<img alt="SignIn" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Hamburger_icon.svg/1200px-Hamburger_icon.svg.png" width="50" height="50">
+		</button>
+		<div class="dropdown-content">
+		  	<a href="/">Main</a>
+			<% if(user != "undefined") { %>
+				<a href="/cart">Cart</a>
+				<a href="/orders">Orders</a>
+				<a href="/reviews">Reviews</a>
+				<a href="/auth/logout">Logout</a>
+			<% } %>
+			<% if(dev) { %>
+				<a href="/dev">Admin Console</a>
+			<% } %>
+		</div>
+	</div>
+</div>
