@@ -12,7 +12,7 @@ const auth = require('./routes/auth')
 const index = require('./routes/index')
 const pay = require('./routes/pay')
 
-const Post = require('./models/Item')
+const Post = require('./models/Wallet')
 const connectDB = require('./config/db')
 
 const ejs = require('ejs')
