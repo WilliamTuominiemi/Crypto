@@ -3,10 +3,22 @@
 
 	<body>
 		<%- include("./partials/nav.ejs") %>
-
-        <div class="main-data">
-            <p> buy GloCoin</p>
-        </div>
+        <center>
+            <div class="main-data">
+                <p>Available Glockoin: <%= user.crypto %> </p>
+                <h3> Send money </h3>
+                <form action="/send" method="post">
+                    <label for="r_name">Receiver name:</label><br>
+                    <input type="text" id="r_name" placeholder="Receiver name"><br>
+                    <label for="r_id">Receiver id:</label><br>
+                    <input type="text" id="r_id" placeholder="Receiver id"><br>
+                    <label for="amount">Amount:</label><br>
+                    <input type="number" id="amount" placeholder="1" min="1"><br><br>
+                    <input type="submit" value="Send">
+                  </form> 
+            </div>
+        </center>
+        
         
         
         <!-- <button onclick="SecondLast()">Click me</button> -->

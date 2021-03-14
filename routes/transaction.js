@@ -1,5 +1,6 @@
 const express = require('express')
-const postController = require('../controllers/transactionController')
+const transactionController = require('../controllers/transactionController')
+
 
 const router = express.Router()
 

@@ -1,9 +1,7 @@
 const paypal = require('paypal-rest-sdk')
 const dotenv = require('dotenv')
 
-const Order = require('../models/Order')
-const Item = require('../models/Item')
-const Cart = require('../models/Cart')
+const User = require('../models/User')
 
 
 dotenv.config({ path: '../config/config.env' })

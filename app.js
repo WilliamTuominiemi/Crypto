@@ -12,7 +12,7 @@ const auth = require('./routes/auth')
 const index = require('./routes/index')
 const pay = require('./routes/pay')
 
-const Post = require('./models/Wallet')
+const User = require('./models/User')
 const connectDB = require('./config/db')
 
 const ejs = require('ejs')
@@ -78,23 +78,23 @@ app.use(express.urlencoded())
 // Favicon
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 
-app.get('/sendmail', (req,res) => {  
-	console.log(req.user)
-	var mailOptions = {
-		from: process.env.EMAIL,
-		to: req.user.googleId,
-		subject: 'Sending Email using Node.js',
-		text: 'That was easy!'
-	  };
+// app.get('/sendmail', (req,res) => {  
+// 	console.log(req.user)
+// 	var mailOptions = {
+// 		from: process.env.EMAIL,
+// 		to: req.user.googleId,
+// 		subject: 'Sending Email using Node.js',
+// 		text: 'That was easy!'
+// 	  };
 	  
-	transporter.sendMail(mailOptions, function(error, info){
-		if (error) {
-		  console.log(error);
-		} else {
-		  console.log('Email sent: ' + info.response);
-		}
-	});
-})
+// 	transporter.sendMail(mailOptions, function(error, info){
+// 		if (error) {
+// 		  console.log(error);
+// 		} else {
+// 		  console.log('Email sent: ' + info.response);
+// 		}
+// 	});
+// })
 
 // Routes
 app.use('/transaction', transaction)
