@@ -35,22 +35,25 @@ const send = (req, res) => {
 	User.find({googleId: req.user.googleId})
 	.then((result) =>	{
 		console.log(result[0])
-		if(parseInt(result[0] >= req.body.amount ))	{
-			let blockChain = new BlockChain()
+		let blockChain = new BlockChain()
 			console.log(blockChain)
 	
 			let PROOF = 420
 	
-			blockChain.addNewTransaction(req.user.displayName, req.body.r_name, req.body.amount)
+			console.log(req)
+
+			blockChain.addNewTransaction('GlocKoin', req.user.displayName/*req.body.r_name*/, req.body.amount)
 			
 			blockChain.addNewBlock(null)
 	
 			console.log("Chain : ", blockChain.chain)
 
 			res.redirect('/success')
-		}	else {
-			res.redirect('/insufficient')
-		}
+		// if(parseInt(result[0] >= req.body.amount ))	{
+			
+		// }	else {
+		// 	res.redirect('/insufficient')
+		// }
 	})	
 }
 
