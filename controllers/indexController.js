@@ -42,12 +42,10 @@ const send = (req, res) => {
 	
 			console.log(req)
 
-			blockChain.addNewTransaction('GlocKoin', req.user.displayName/*req.body.r_name*/, req.body.amount)
+			blockChain.addNewTransaction('GlocKoin', req.user.googleId/*req.body.r_name*/, req.body.amount)
 			
 			blockChain.addNewBlock(null)
 	
-			console.log("Chain : ", blockChain.chain)
-
 			res.redirect('/success')
 		// if(parseInt(result[0] >= req.body.amount ))	{
 			

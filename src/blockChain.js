@@ -7,6 +7,7 @@ let validator = require("./validator")
 let mongoose = require("mongoose")
 
 let blockChainModel = require('./database/model')
+let User = require('../models/User')
 
 let chalk = require("chalk")
 
@@ -40,6 +41,7 @@ class BlockChain {
             block.hash = hash(block)
 
             this.getLastBlock((lastBlock) => {
+
                 if(lastBlock) {
                     block.prevHash = lastBlock.hash
                 }
@@ -62,6 +64,10 @@ class BlockChain {
     }
 
     addNewTransaction(sender, recipient, amount) {
+        User.find({ googleId: sender })
+        {
+            
+        }
         this.curr_transactions.push({sender, recipient, amount})
     }
 

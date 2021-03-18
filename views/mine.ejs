@@ -1,0 +1,26 @@
+<html lang="en">
+	<%- include("./partials/head.ejs") %>
+
+	<body>
+		<%- include("./partials/nav.ejs") %>
+        <center>
+            <div class="main-data">
+                <p>Available Glockoin: <%= user.crypto %> </p>
+                <h3> Send money </h3>
+                <form action="/send" method="post">
+                    <label for="r_name">Receiver name:</label><br>
+                    <input type="text" id="r_name" name="r_name" placeholder="Receiver name"><br>
+                    <label for="r_id">Receiver id:</label><br>
+                    <input type="text" id="r_id" name="r_id" placeholder="Receiver id"><br>
+                    <label for="amount">Amount:</label><br>
+                    <input type="number" id="amount" name="amount" placeholder="1" min="1"><br><br>
+                    <button class="send" type="submit" value="submit">Send</button>
+                  </form> 
+            </div>
+        </center>
+        
+        
+        
+        <!-- <button onclick="SecondLast()">Click me</button> -->
+	</body>
+</html>
