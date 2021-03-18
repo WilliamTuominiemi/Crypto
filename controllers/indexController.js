@@ -1,5 +1,7 @@
 const Transaction = require('../models/Transaction')
 const User = require('../models/User')
+const BlockToMine = require('../models/BlockToMine')
+
 
 
 let BlockChain = require('../src/blockChain')
@@ -53,6 +55,13 @@ const send = (req, res) => {
 		// 	res.redirect('/insufficient')
 		// }
 	})	
+}
+
+const mine_page = (req, res) => {
+	BlockToMine.find()
+	.then((result) => {
+		res.render('mine', { title: 'Mine', user: req.user, blocks: result})
+	})
 }
 
 
