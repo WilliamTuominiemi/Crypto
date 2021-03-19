@@ -5,11 +5,18 @@
 		<%- include("./partials/nav.ejs") %>
         <center>
             <div class="main-data">
-                <h3> Mine GlocKoin </h3>
+                <h3> Pending GlocKoin transactions </h3>
                 <% blocks.forEach(block => { %>
-                    <h4> <%= block._id %> </h4>
-                    <button onclick="location.href='/mine:<%= block._id %>' type="button"> Mine this block </button>
+
+                    <div class="block_to_mine">
+                        <a href="/mine:<%= block._id %>"> <h4> <%= block._id %> </h4> </a>
+                        <p>From: <%= block.sender %></p>
+                        <p>To: <%= block.recipient %></p>
+                        <p>Amount: <%= block.amount %></p>
+                    </div>
+
                 <% }) %>
+
             </div>
         </center>
         
