@@ -33,7 +33,31 @@ const main = (req, res) => {
 }
 
 const send = (req, res) => {
+	const body = {
+		sender: req.user.googleId,
+		recipient: req.body.recipient_id,
+		amount: req.body.amount,
+	}
 
+	console.log(body)
+	
+	const blockToMine = new BlockToMine(body)
+
+	blockToMine.save()
+	.then((result) => {
+		res.redirect('/')
+	})
+
+}
+
+const mine_page = (req, res) => {
+	BlockToMine.find()
+	.then((result) => {
+		res.render('mine', { title: 'Mine', user: req.user, blocks: result})
+	})
+}
+
+const mine = (req, res) => {
 	User.find({googleId: req.user.googleId})
 	.then((result) =>	{
 		console.log(result[0])
@@ -55,13 +79,6 @@ const send = (req, res) => {
 		// 	res.redirect('/insufficient')
 		// }
 	})	
-}
-
-const mine_page = (req, res) => {
-	BlockToMine.find()
-	.then((result) => {
-		res.render('mine', { title: 'Mine', user: req.user, blocks: result})
-	})
 }
 
 
