@@ -85,5 +85,6 @@ const mine = (req, res) => {
 
 module.exports = {
 	main,
-	send
+	send,
+	mine_page
 }
