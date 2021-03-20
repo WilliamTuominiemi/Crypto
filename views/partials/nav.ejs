@@ -26,7 +26,9 @@
 		</button>
 		<div class="dropdown-content">
 		  	<a href="/">Main</a>
+
 			<% if(user != "undefined") { %>
+				<a href="/mine">Mine</a>
 				<a href="/auth/logout">Logout</a>
 			<% } %>
 		</div>

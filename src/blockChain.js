@@ -11,6 +11,8 @@ let User = require('../models/User')
 
 let chalk = require("chalk")
 
+const mining_reward = 1
+
 class BlockChain {
     constructor() {
         //Create
@@ -63,13 +65,26 @@ class BlockChain {
         }       
     }
 
-    addNewTransaction(sender, recipient, amount) {
-        User.find({ googleId: sender })
-        {
-            
-        }
-        this.curr_transactions.push({sender, recipient, amount})
+    addNewTransaction(miner, sender, recipient, amount) {
+        const amount_int = parseInt(amount)
+        const neg_amount_int = 0 - amount_int
+
+        console.log(neg_amount_int)  
+        console.log(amount_int)      
+        console.log("sender: ", sender)      
+        console.log("miner: ", miner)   
+        User.findOneAndUpdate({ googleId: miner }, {$inc : {'crypto' : mining_reward}})
+        .then(() => {
+            User.findOneAndUpdate({ googleId: sender }, {$inc : {'crypto' : neg_amount_int}})
+            .then(() => {
+                User.findOneAndUpdate({ googleId: recipient }, {$inc : {'crypto' : amount_int}})   
+                .then(() => {
+                    this.curr_transactions.push({miner, sender, recipient, amount})
+                })
+            })            
+        })
     }
+        
 
     lastBlock() {
         return this.chain.slice(-1)[0]

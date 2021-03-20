@@ -12,8 +12,13 @@
                         <p>From: <%= block.sender %></p>
                         <p>To: <%= block.recipient %></p>
                         <p>Amount: <%= block.amount %></p>
-                        <button onclick="location.href='/mine:<%= block._id %>' type="button"> Mine This New Block </button>
-
+                        <form action="/mine" method="post">
+                            <input type="hidden" id="blockToMine_id" name="blockToMine_id" value="<%= block._id  %>"><br>
+                            <input type="hidden" id="sender_id" name="sender_id" value="<%= block.sender %>"><br>
+                            <input type="hidden" id="recipient_id" name="recipient_id" value="<%= block.recipient %>"><br>
+                            <input type="hidden" id="amount" name="amount" value="<%= block.amount %>"<br><br>
+                            <button class="send" type="submit" value="submit">Mine This New Block</button>
+                          </form> 
                     </div>
                 <% }) %>
 

@@ -15,20 +15,14 @@ dotenv.config({ path: './config/config.env' })
 const admin_id = `${process.env.ADMIN_ID}`
 
 const render_index = (req, res, user, page) => {
-	res.render(page, { title: 'Main', user: user})
 }
 
 // Redirects to /posts
 const main = (req, res) => {
 	if(req.user === undefined) {
-		render_index(req, res, "undefined", 'index')
+		res.render('index', { title: 'Main', user: "undefined", code: "000"})
 	}	else {
-		if(req.user.googleId.toString() === admin_id)	{
-			render_index(req, res, req.user, 'index')
-
-		}	else {
-			render_index(req, res,req.user, 'index')
-		}
+		res.render('index', { title: 'Main', user: req.user, code: "000"})
 	}
 }
 
@@ -58,27 +52,30 @@ const mine_page = (req, res) => {
 }
 
 const mine = (req, res) => {
-	User.find({googleId: req.user.googleId})
-	.then((result) =>	{
-		console.log(result[0])
-		let blockChain = new BlockChain()
-			console.log(blockChain)
-	
-			let PROOF = 420
-	
-			console.log(req)
-
-			blockChain.addNewTransaction('GlocKoin', req.user.googleId/*req.body.r_name*/, req.body.amount)
-			
-			blockChain.addNewBlock(null)
-	
-			res.redirect('/success')
-		// if(parseInt(result[0] >= req.body.amount ))	{
-			
-		// }	else {
-		// 	res.redirect('/insufficient')
-		// }
-	})	
+	console.log(req.body.blockToMine_id)
+	const filter = {_id: req.body.blockToMine_id}
+	BlockToMine.findOneAndDelete({_id: req.body.blockToMine_id})
+	.then((result) => {
+		User.find({googleId: req.body.sender_id})
+		.then((result) =>	{
+			console.log(result[0])
+			let blockChain = new BlockChain()
+				console.log(blockChain)
+		
+				let PROOF = 420
+		
+				blockChain.addNewTransaction(req.user.googleId, req.body.sender_id, req.body.recipient_id, req.body.amount)
+				
+				blockChain.addNewBlock(null)
+		
+				res.redirect('/success')
+			if(parseInt(result[0].crypto >= req.body.amount ))	{
+				
+			}	else {
+			 	res.redirect('/insufficient')
+			}
+		})	
+	})
 }
 
 
@@ -86,5 +83,6 @@ const mine = (req, res) => {
 module.exports = {
 	main,
 	send,
-	mine_page
+	mine_page,
+	mine
 }

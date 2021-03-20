@@ -1,3 +1,4 @@
+const { Int32 } = require('bson')
 const mongoose = require('mongoose')
 
 const UserSchema = new mongoose.Schema({
@@ -17,7 +18,7 @@ const UserSchema = new mongoose.Schema({
 		default: Date.now,
 	},
 	crypto: {
-		type: String,
+		type: Number,
 		required: true
 	}
 })

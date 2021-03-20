@@ -8,12 +8,10 @@
                 <p>Available Glockoin: <%= user.crypto %> </p>
                 <h3> Send money </h3>
                 <form action="/send" method="post">
-                    <label for="r_name">Recipient name:</label><br>
-                    <input type="text" id="recipient_name" name="recipient_name" placeholder="Recepient name"><br>
                     <label for="r_id">Receiver id:</label><br>
                     <input type="text" id="recipient_id" name="recipient_id" placeholder="Receiver id"><br>
                     <label for="amount">Amount:</label><br>
-                    <input type="number" id="amount" name="amount" value="1" min="1"><br><br>
+                    <input type="number" id="amount" name="amount" value="10" min="10" max="<%= user.crypto %>"><br><br>
                     <button class="send" type="submit" value="submit">Send</button>
                   </form> 
             </div>
