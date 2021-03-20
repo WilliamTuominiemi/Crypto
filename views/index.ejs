@@ -11,7 +11,12 @@
                     <label for="r_id">Receiver id:</label><br>
                     <input type="text" id="recipient_id" name="recipient_id" placeholder="Receiver id"><br>
                     <label for="amount">Amount:</label><br>
-                    <input type="number" id="amount" name="amount" value="10" min="10" max="<%= user.crypto %>"><br><br>
+                    <input type="number" id="amount" name="amount" value="10" min="10" max="<%= user.crypto %>" ><br><br>
+                    <% if(code === "51") { %>
+                        <div class="code51">INSUFFICIENT FUNDS</div><br><br>
+                    <% } else if(code === "00") { %>
+                        <div class="code00">SUCCESS</div><br><br>
+                    <% } %>
                     <button class="send" type="submit" value="submit">Send</button>
                   </form> 
             </div>

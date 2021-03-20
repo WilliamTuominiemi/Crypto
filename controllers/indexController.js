@@ -20,34 +20,40 @@ const render_index = (req, res, user, page) => {
 // Redirects to /posts
 const main = (req, res) => {
 	if(req.user === undefined) {
-		res.render('index', { title: 'Main', user: "undefined", code: "000"})
+		res.render('index', { title: 'Main', user: "undefined", code: "-"})
 	}	else {
-		res.render('index', { title: 'Main', user: req.user, code: "000"})
+		res.render('index', { title: 'Main', user: req.user, code: "-"})
 	}
 }
 
 const send = (req, res) => {
-	const body = {
-		sender: req.user.googleId,
-		recipient: req.body.recipient_id,
-		amount: req.body.amount,
-	}
+	User.find({googleId: req.user.googleId})
+	.then((result) =>	{
+		if(result[0].crypto >= req.body.amount )	{
+			const body = {
+				sender: req.user.googleId,
+				recipient: req.body.recipient_id,
+				amount: req.body.amount,
+			}
 
-	console.log(body)
-	
-	const blockToMine = new BlockToMine(body)
+			console.log(body)
+			
+			const blockToMine = new BlockToMine(body)
 
-	blockToMine.save()
-	.then((result) => {
-		res.redirect('/')
-	})
-
+			blockToMine.save()
+			.then((result) => {
+				res.render('index', { title: 'Main', user: req.user, code: "00"})
+			})
+		}	else {
+			res.render('index', { title: 'Main', user: req.user, code: "51"})
+		}
+	})	
 }
 
 const mine_page = (req, res) => {
 	BlockToMine.find()
 	.then((result) => {
-		res.render('mine', { title: 'Mine', user: req.user, blocks: result})
+		res.render('mine', { title: 'Mine', user: req.user, blocks: result, code:"-"})
 	})
 }
 
@@ -56,25 +62,14 @@ const mine = (req, res) => {
 	const filter = {_id: req.body.blockToMine_id}
 	BlockToMine.findOneAndDelete({_id: req.body.blockToMine_id})
 	.then((result) => {
-		User.find({googleId: req.body.sender_id})
-		.then((result) =>	{
-			console.log(result[0])
-			let blockChain = new BlockChain()
-				console.log(blockChain)
 		
-				let PROOF = 420
+		let blockChain = new BlockChain()
 		
-				blockChain.addNewTransaction(req.user.googleId, req.body.sender_id, req.body.recipient_id, req.body.amount)
-				
-				blockChain.addNewBlock(null)
+		let PROOF = 420
+		blockChain.addNewTransaction(req.user.googleId, req.body.sender_id, req.body.recipient_id, req.body.amount)
+		blockChain.addNewBlock(null)
+		res.redirect('/mine')
 		
-				res.redirect('/success')
-			if(parseInt(result[0].crypto >= req.body.amount ))	{
-				
-			}	else {
-			 	res.redirect('/insufficient')
-			}
-		})	
 	})
 }
 
