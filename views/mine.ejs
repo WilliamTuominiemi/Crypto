@@ -7,14 +7,14 @@
             <div class="main-data">
                 <h3> Pending GlocKoin transactions </h3>
                 <% blocks.forEach(block => { %>
-
                     <div class="block_to_mine">
-                        <a href="/mine:<%= block._id %>"> <h4> <%= block._id %> </h4> </a>
+                       <h4> <%= block._id %> </h4>
                         <p>From: <%= block.sender %></p>
                         <p>To: <%= block.recipient %></p>
                         <p>Amount: <%= block.amount %></p>
-                    </div>
+                        <button onclick="location.href='/mine:<%= block._id %>' type="button"> Mine This New Block </button>
 
+                    </div>
                 <% }) %>
 
             </div>

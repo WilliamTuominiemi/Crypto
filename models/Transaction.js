@@ -4,6 +4,10 @@ const Schema = mongoose.Schema
 // Schema
 const TransactionSchema = new Schema(
 	{
+		miner_id: {
+			type: String,
+			required: true,
+		},
 		sender_username: {
 			type: String,
 			required: true,
