@@ -51,26 +51,37 @@ const send = (req, res) => {
 }
 
 const mine_page = (req, res) => {
-	BlockToMine.find()
-	.then((result) => {
-		res.render('mine', { title: 'Mine', user: req.user, blocks: result, code:"-"})
-	})
+	if(req.user != undefined)
+	{
+		BlockToMine.find()
+		.then((result) => {
+			res.render('mine', { title: 'Mine', user: req.user, blocks: result, code:"-"})
+		})
+	}	else	{
+		res.redirect('/')
+	}
 }
 
 const mine = (req, res) => {
-	console.log(req.body.blockToMine_id)
-	const filter = {_id: req.body.blockToMine_id}
-	BlockToMine.findOneAndDelete({_id: req.body.blockToMine_id})
-	.then((result) => {
-		
-		let blockChain = new BlockChain()
-		
-		let PROOF = 420
-		blockChain.addNewTransaction(req.user.googleId, req.body.sender_id, req.body.recipient_id, req.body.amount)
-		blockChain.addNewBlock(null)
-		res.redirect('/mine')
-		
-	})
+	if(req.user != undefined)
+	{
+		console.log(req.body.blockToMine_id)
+		const filter = {_id: req.body.blockToMine_id}
+		BlockToMine.findOneAndDelete({_id: req.body.blockToMine_id})
+		.then((result) => {
+			
+			let blockChain = new BlockChain()
+			
+			let PROOF = 420
+			blockChain.addNewTransaction(req.user.googleId, req.body.sender_id, req.body.recipient_id, req.body.amount)
+			blockChain.addNewBlock(null)
+			res.redirect('/mine')
+			
+		})
+	}	else	{
+		res.redirect('/')
+	}
+	
 }
 
 

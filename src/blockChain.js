@@ -39,7 +39,12 @@ class BlockChain {
             prevHash: prevHash,
         }
 
+        console.log(block)
+
         if(validator.proofOfWork() == TARGET_HASH)  {
+            const amount_int = parseInt(block.transactions[0].amount)
+            const neg_amount_int = 0 - amount_int
+
             block.hash = hash(block)
 
             this.getLastBlock((lastBlock) => {
@@ -49,40 +54,34 @@ class BlockChain {
                 }
 
                 let newBlockChain = new blockChainModel(block)
-                newBlockChain.save((err) => {
-                    if(err) return console.log(chalk.red("Cannot save Block on DB", err.message))
+                newBlockChain.save((err) => {          
+                     if(err) return console.log(chalk.red("Cannot save Block on DB", err.message))
                     console.log(chalk.green("Block saved on DB"))
                 })
-    
-                //Hash
-                this.hash = hash(block)
-     
-                //Add to chain
-                this.chain.push(block)
-                this.curr_transactions = []
-                return block
-            })       
-        }       
+
+                User.findOneAndUpdate({ googleId: block.transactions[0].miner }, {$inc : {'crypto' : mining_reward}})
+                .then(() => {
+                    User.findOneAndUpdate({ googleId: block.transactions[0].sender }, {$inc : {'crypto' : neg_amount_int}})
+                    .then(() => {
+                        User.findOneAndUpdate({ googleId: block.transactions[0].recipient }, {$inc : {'crypto' : amount_int}})   
+                        .then(() => {
+                            console.log(miner, sender, recipient, amount)
+                            //Hash
+                            this.hash = hash(block)
+                
+                            //Add to chain
+                            this.chain.push(block)
+                            this.curr_transactions = []
+                            return block
+                        })
+                    })            
+                })            
+            })      
+        }  
     }
 
     addNewTransaction(miner, sender, recipient, amount) {
-        const amount_int = parseInt(amount)
-        const neg_amount_int = 0 - amount_int
-
-        console.log(neg_amount_int)  
-        console.log(amount_int)      
-        console.log("sender: ", sender)      
-        console.log("miner: ", miner)   
-        User.findOneAndUpdate({ googleId: miner }, {$inc : {'crypto' : mining_reward}})
-        .then(() => {
-            User.findOneAndUpdate({ googleId: sender }, {$inc : {'crypto' : neg_amount_int}})
-            .then(() => {
-                User.findOneAndUpdate({ googleId: recipient }, {$inc : {'crypto' : amount_int}})   
-                .then(() => {
-                    this.curr_transactions.push({miner, sender, recipient, amount})
-                })
-            })            
-        })
+        this.curr_transactions.push({miner, sender, recipient, amount})       
     }
         
 
