@@ -179,11 +179,46 @@
 		.dropdown:hover .dropdown-content {display: block;}
 
 		.dropdown:hover .dropbtn {background-color: #C0C0C0;}	
+
+		#mining_text {
+			color: red;
+		}
+
+		#myProgress {
+			width: 100%;
+			background-color: #ddd;
+		}
+
+		#myBar {
+			width: 1%;
+			height: 30px;
+			background-color: red;
+		}
 	</style>
 
 	<script>
+		var i = 0;
 
-		
+		const startTimer = () => {
+			document.getElementById("mining_text").style.visibility="visible"
+			document.getElementById("myProgress").style.visibility="visible"
+
+			if (i == 0) {
+				i = 1;
+				var elem = document.getElementById("myBar");
+				var width = 1;
+				var id = setInterval(frame, 125);
+				function frame() {
+				if (width >= 100) {
+					clearInterval(id);
+					i = 0;
+				} else {
+					width++;
+					elem.style.width = width + "%";
+				}
+			}
+		}
+		}
 	
 	</script>
 

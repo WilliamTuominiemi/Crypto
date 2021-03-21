@@ -16,8 +16,8 @@
                     <p>Available Glockoin: <b><%= user.crypto %></b> </p>
                     <h3> Send money </h3>
                     <form action="/send" method="post">
-                        <label for="r_id">Receiver id:</label><br>
-                        <input type="text" id="recipient_id" name="recipient_id" placeholder="Receiver id"><br>
+                        <label for="r_id">Recipient public key:</label><br>
+                        <input type="text" id="recipient_id" name="recipient_id" placeholder="Recipient key"><br>
                         <label for="amount">Amount:</label><br>
                         <input type="number" id="amount" name="amount" value="10" min="10" max="<%= user.crypto %>" ><br><br>
                         <% if(code === "51") { %>
@@ -25,7 +25,7 @@
                         <% } else if(code === "00") { %>
                             <div class="code00">SUCCESS</div><br><br>
                         <% } %>
-                        <button class="send" type="submit" value="submit">Send</button>
+                        <button  class="send" type="submit" value="submit">Send</button>
                       </form> 
                 <% } %>
                     

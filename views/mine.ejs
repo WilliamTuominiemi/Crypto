@@ -17,7 +17,11 @@
                             <input type="hidden" id="sender_id" name="sender_id" value="<%= block.sender %>"><br>
                             <input type="hidden" id="recipient_id" name="recipient_id" value="<%= block.recipient %>"><br>
                             <input type="hidden" id="amount" name="amount" value="<%= block.amount %>"<br><br>
-                            <button class="send" type="submit" value="submit">Mine This New Block</button>
+                            <button onclick="startTimer()" class="send" type="submit" value="submit">Mine This New Block</button>
+                            <h4 id="mining_text" style="visibility: hidden;"> MINING </h4>
+                            <div id="myProgress" style="visibility: hidden;">
+                                <div id="myBar"></div>
+                              </div>
                           </form> 
                     </div>
                 <% }) %>
