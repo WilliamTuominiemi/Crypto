@@ -6,6 +6,7 @@ const router = express.Router()
 
 router.get('/', indexController.main)
 router.get('/mine', indexController.mine_page)
+router.get('/blockchain', indexController.blockchain)
 
 router.post('/mine', indexController.mine)
 router.post('/send', indexController.send)

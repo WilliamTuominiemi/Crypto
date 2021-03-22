@@ -3,6 +3,8 @@ const User = require('../models/User')
 const BlockToMine = require('../models/BlockToMine')
 
 let BlockChain = require('../src/blockChain')
+let BlockChainModel = require('../src/database/model')
+
 let hash = require('object-hash')
 
 
@@ -82,11 +84,21 @@ const mine = (req, res) => {
 	
 }
 
+const blockchain = (req, res) => {
+	BlockChainModel.find()
+	.then((result) => {
+		if(req.user === undefined) res.render('blockchain', { title: 'Main', user: "undefined", blockchain: result })
+		else res.render('blockchain', { title: 'Main', user: req.user, blockchain: result })
+	})
+	
+}
+
 
 
 module.exports = {
 	main,
 	send,
 	mine_page,
-	mine
+	mine,
+	blockchain
 }
