@@ -7,7 +7,6 @@ const mongoose = require('mongoose')
 const session = require('express-session')
 const MongoStore = require('connect-mongo')(session)
 
-const transaction = require('./routes/transaction')
 const auth = require('./routes/auth')
 const index = require('./routes/index')
 const pay = require('./routes/pay')
@@ -97,7 +96,6 @@ app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 // })
 
 // Routes
-app.use('/transaction', transaction)
 app.use('/auth', auth)
 app.use('/', index)
 

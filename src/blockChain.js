@@ -65,7 +65,6 @@ class BlockChain {
                     .then(() => {
                         User.findOneAndUpdate({ googleId: block.transactions[0].recipient }, {$inc : {'crypto' : amount_int}})   
                         .then(() => {
-                            console.log(miner, sender, recipient, amount)
                             //Hash
                             this.hash = hash(block)
                 
@@ -81,7 +80,14 @@ class BlockChain {
     }
 
     addNewTransaction(miner, sender, recipient, amount) {
-        this.curr_transactions.push({miner, sender, recipient, amount})       
+        console.log(chalk.green(`miner ${miner}, sender ${sender}, recipient ${recipient}`))
+        
+        this.curr_transactions.push({
+            miner, 
+            sender, 
+            recipient, 
+            amount
+        })       
     }
         
 

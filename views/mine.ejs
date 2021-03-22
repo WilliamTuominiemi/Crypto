@@ -1,6 +1,10 @@
 <html lang="en">
 	<%- include("./partials/head.ejs") %>
 
+    <% const truncate = (str) => { %>
+    <%    return (str.length > 30) ? str.substr(0, 30-1) + '...' : str; %>
+    <% }; %>
+
 	<body>
 		<%- include("./partials/nav.ejs") %>
         <center>
@@ -9,9 +13,9 @@
                 <% blocks.forEach(block => { %>
                     <div class="block_to_mine">
                        <h4> <%= block._id %> </h4>
-                        <p>From: <%= block.sender %></p>
-                        <p>To: <%= block.recipient %></p>
-                        <p>Amount: <%= block.amount %></p>
+                        <p>From: <%= truncate(block.sender) %></p>
+                        <p>To: <%= truncate(block.recipient) %></p>
+                        <p>Amount: <%= truncate(block.amount) %></p>
                         <form action="/mine" method="post">
                             <input type="hidden" id="blockToMine_id" name="blockToMine_id" value="<%= block._id  %>"><br>
                             <input type="hidden" id="sender_id" name="sender_id" value="<%= block.sender %>"><br>

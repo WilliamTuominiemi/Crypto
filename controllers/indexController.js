@@ -2,8 +2,6 @@ const Transaction = require('../models/Transaction')
 const User = require('../models/User')
 const BlockToMine = require('../models/BlockToMine')
 
-
-
 let BlockChain = require('../src/blockChain')
 let hash = require('object-hash')
 
@@ -17,12 +15,12 @@ const admin_id = `${process.env.ADMIN_ID}`
 const render_index = (req, res, user, page) => {
 }
 
-// Redirects to /posts
+// Redirects to /
 const main = (req, res) => {
 	if(req.user === undefined) {
 		res.render('index', { title: 'Main', user: "undefined", code: "-"})
 	}	else {
-		res.render('index', { title: 'Main', user: req.user, code: "-"})
+		res.render('index', { title: 'Main', user: req.user, code: "-", public_key: req.user.googleId })
 	}
 }
 
@@ -42,10 +40,10 @@ const send = (req, res) => {
 
 			blockToMine.save()
 			.then((result) => {
-				res.render('index', { title: 'Main', user: req.user, code: "00"})
+				res.render('index', { title: 'Main', user: req.user, code: "00", public_key: req.user.googleId })
 			})
 		}	else {
-			res.render('index', { title: 'Main', user: req.user, code: "51"})
+			res.render('index', { title: 'Main', user: req.user, code: "51", public_key: req.user.googleId })
 		}
 	})	
 }

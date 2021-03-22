@@ -13,6 +13,8 @@
                         width="236,25" height="56,25">
                     </a>
                 <% } else { %>
+                    <input type="text" value="<%= public_key %>" id="publicKey">
+                    <button onclick="copyKey()">Copy</button>
                     <p>Available Glockoin: <b><%= user.crypto %></b> </p>
                     <h3> Send money </h3>
                     <form action="/send" method="post">
