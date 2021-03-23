@@ -6,8 +6,17 @@
         <center>
             <div class="main-data">
                 <% blockchain.forEach(block => { %>
-                    <%= block %>
+                    <div class="block">
+                        <h3> Sender: <%= block.transactions[0].sender %></h3>
+                        <h3> Recepient: <%= block.transactions[0].recipient %></h3>
+                        <h3> Miner: <%= block.transactions[0].miner %></h3>
+                        <h4> Hash: <%= block.hash %></h4>
+                        <h4> Previous block hash: <%= block.prevHash %></h4>
+                        <p> Date added:  <%= block.timestamp %></p>
+                    </div>        
+    
                     <br /><br />
+                    
                 <% }) %>
                     
                 
