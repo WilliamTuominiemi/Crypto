@@ -10,6 +10,7 @@
         <center>
             <div class="main-data">
                 <h3> Pending GlocKoin transactions </h3>
+                <% if (blocks.length === 0) { %> <p> There are no minable blocks available... </p> <% } %>
                 <% blocks.forEach(block => { %>
                     <div class="block_to_mine">
                        <h4> <%= block._id %> </h4>
@@ -22,7 +23,7 @@
                             <input type="hidden" id="recipient_id" name="recipient_id" value="<%= block.recipient %>"><br>
                             <input type="hidden" id="amount" name="amount" value="<%= block.amount %>"<br><br>
                             <button onclick="startTimer()" class="send" type="submit" value="submit">Mine This New Block</button>
-                            <h4 id="mining_text" style="visibility: hidden;"> MINING </h4>
+                            <h4 id="mining_text" style="visibility: hidden;"> MINING... </h4>
                             <div id="myProgress" style="visibility: hidden;">
                                 <div id="myBar"></div>
                               </div>

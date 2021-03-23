@@ -180,7 +180,6 @@ const success = (req, res) => {
                         else {    
                             transporter.sendMail(mailOptions, (error, info) => {
                                 if (error) {
-                                    console.log("fuuuck5")
                                     console.log(error)
                                 } else {
                                     console.log('Email sent: ' + info.response);

@@ -86,6 +86,7 @@ const mine = (req, res) => {
 
 const blockchain = (req, res) => {
 	BlockChainModel.find()
+	.sort({ timestamp: -1 })
 	.then((result) => {
 		if(req.user === undefined) res.render('blockchain', { title: 'Main', user: "undefined", blockchain: result })
 		else res.render('blockchain', { title: 'Main', user: req.user, blockchain: result })
