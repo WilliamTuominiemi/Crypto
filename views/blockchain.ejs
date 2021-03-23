@@ -5,14 +5,26 @@
 		<%- include("./partials/nav.ejs") %>
         <center>
             <div class="main-data">
+                <h1> Current Verfied Blockchain </h1>
                 <% blockchain.forEach(block => { %>
                     <div class="block">
                         <h3> Sender: <%= block.transactions[0].sender %></h3>
                         <h3> Recepient: <%= block.transactions[0].recipient %></h3>
                         <h3> Miner: <%= block.transactions[0].miner %></h3>
-                        <h4> Hash: <%= block.hash %></h4>
-                        <h4> Previous block hash: <%= block.prevHash %></h4>
-                        <p> Date added:  <%= block.timestamp %></p>
+                        <h4> Hash</h4>
+                        <p> <%= block.hash %> </p>
+                        <h4> Hash of previous block </h4>
+                        <p> <%= block.prevHash %> </p>
+                        <h4> Timestamp </h4>
+                        <p> <%= block.timestamp %></p>
+                        <div class="dropdown">
+                            <button onclick="myFunction()" class="dropbtn1">Transactions</button>
+                            <div id="myDropdown" class="dropdown-content1">
+                                <p> Sender: <%= block.transactions[0].sender %></p>
+                                <p> Recepient: <%= block.transactions[0].recipient %></p>
+                                <p> Miner: <%= block.transactions[0].miner %></p>
+                            </div>
+                          </div>
                     </div>        
     
                     <br /><br />
