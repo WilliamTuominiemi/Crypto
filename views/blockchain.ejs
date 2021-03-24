@@ -8,9 +8,6 @@
                 <h1> Current Verfied Blockchain </h1>
                 <% blockchain.forEach(block => { %>
                     <div class="block">
-                        <h3> Sender: <%= block.transactions[0].sender %></h3>
-                        <h3> Recepient: <%= block.transactions[0].recipient %></h3>
-                        <h3> Miner: <%= block.transactions[0].miner %></h3>
                         <h4> Hash</h4>
                         <p> <%= block.hash %> </p>
                         <h4> Hash of previous block </h4>
