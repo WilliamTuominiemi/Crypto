@@ -8,8 +8,8 @@ router.get('/', indexController.main)
 router.get('/send', indexController.send_page)
 router.get('/mine', indexController.mine_page)
 router.get('/blockchain', indexController.blockchain)
-router.get('/coinflip', indexController.coinflip)
 
+router.post('/coinflip', indexController.coinflip)
 router.post('/mine', indexController.mine)
 router.post('/send', indexController.send)
 
