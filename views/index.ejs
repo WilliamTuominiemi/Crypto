@@ -17,6 +17,11 @@
                     <form action="/coinflip" method="post">
                         <label for="amount">Amount:</label><br>
                         <input type="number" id="amount" name="amount" value="10" min="10" max="<%= user.crypto %>" ><br><br>
+                        <label for="heads">Heads</label>
+                        <input type="radio" id="heads" name="coinflip" value="0">
+                        <label for="tails">Tails</label>
+                        <input type="radio" id="tails" name="coinflip" value="1"><br><br>
+
                         <button  class="send" type="submit" value="submit">Send</button>
                       </form> 
                 <% } %>        

@@ -104,10 +104,10 @@ const blockchain = (req, res) => {
 
 const coinflip = (req, res) => {
 	const coin = Math.floor(Math.random() * 2)
-	if(coin === 0)	{
-		console.log("tails")
+	if(coin === parseInt(req.body.coinflip))	{
+		console.log("correct")
 	}	else	{
-		console.log("heads")
+		console.log("wrong")
 	}
 }
 
