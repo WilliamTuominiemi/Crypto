@@ -26,6 +26,14 @@ const main = (req, res) => {
 	}
 }
 
+const send_page = (req, res) => {
+	if(req.user === undefined) {
+		res.render('send', { title: 'Main', user: "undefined", code: "-"})
+	}	else {
+		res.render('send', { title: 'Main', user: req.user, code: "-", public_key: req.user.googleId })
+	}
+}
+
 const send = (req, res) => {
 	User.find({googleId: req.user.googleId})
 	.then((result) =>	{
@@ -94,6 +102,15 @@ const blockchain = (req, res) => {
 	
 }
 
+const coinflip = (req, res) => {
+	const coin = Math.floor(Math.random() * 2)
+	if(coin === 0)	{
+		console.log("tails")
+	}	else	{
+		console.log("heads")
+	}
+}
+
 
 
 module.exports = {
@@ -101,5 +118,7 @@ module.exports = {
 	send,
 	mine_page,
 	mine,
-	blockchain
+	blockchain,
+	coinflip,
+	send_page
 }
