@@ -14,6 +14,8 @@ dotenv.config({ path: './config/config.env' })
 
 const admin_id = `${process.env.ADMIN_ID}`
 
+const house = '118195899940427162005'
+
 const render_index = (req, res, user, page) => {
 }
 
@@ -34,26 +36,29 @@ const send_page = (req, res) => {
 	}
 }
 
+const create_blocktomine = (res, req, sender, recipient, amount, page, title, code) => {
+	const body = {
+		sender: sender,
+		recipient: recipient,
+		amount: amount,
+	}
+	
+	const blockToMine = new BlockToMine(body)
+	console.log(blockToMine)
+
+	blockToMine.save()
+	.then((result) => {
+		res.render(page, { title: title, user: req.user, code: code })
+	})
+}
+
 const send = (req, res) => {
 	User.find({googleId: req.user.googleId})
 	.then((result) =>	{
 		if(result[0].crypto >= req.body.amount )	{
-			const body = {
-				sender: req.user.googleId,
-				recipient: req.body.recipient_id,
-				amount: req.body.amount,
-			}
-
-			console.log(body)
-			
-			const blockToMine = new BlockToMine(body)
-
-			blockToMine.save()
-			.then((result) => {
-				res.render('index', { title: 'Main', user: req.user, code: "00", public_key: req.user.googleId })
-			})
+			create_blocktomine(res, req,  req.user.googleId, req.body.recipient_id, req.body.amount, 'send', 'Main', '00')
 		}	else {
-			res.render('index', { title: 'Main', user: req.user, code: "51", public_key: req.user.googleId })
+			res.render('index', { title: 'Main', user: req.user, code: "51" })
 		}
 	})	
 }
@@ -105,9 +110,9 @@ const blockchain = (req, res) => {
 const coinflip = (req, res) => {
 	const coin = Math.floor(Math.random() * 2)
 	if(coin === parseInt(req.body.coinflip))	{
-		console.log("correct")
+		create_blocktomine(res, req,  house, req.user.googleId, req.body.amount, 'index', 'Main', '01')
 	}	else	{
-		console.log("wrong")
+		create_blocktomine(res, req, req.user.googleId, house, req.body.amount, 'index', 'Main', '01')
 	}
 }
 

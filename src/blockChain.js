@@ -1,6 +1,6 @@
 let hash = require('object-hash')
 
-const TARGET_HASH = hash(420)
+const TARGET_HASH = hash(100000)
 
 let validator = require("./validator")
 

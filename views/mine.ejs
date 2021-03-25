@@ -17,6 +17,7 @@
                         <p>From: <%= truncate(block.sender) %></p>
                         <p>To: <%= truncate(block.recipient) %></p>
                         <p>Amount: <%= truncate(block.amount) %></p>
+                        <p> Timestamp: <%= block.createdAt %></p>
                         <form action="/mine" method="post">
                             <input type="hidden" id="blockToMine_id" name="blockToMine_id" value="<%= block._id  %>"><br>
                             <input type="hidden" id="sender_id" name="sender_id" value="<%= block.sender %>"><br>
