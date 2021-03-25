@@ -112,7 +112,7 @@ const coinflip = (req, res) => {
 	if(coin === parseInt(req.body.coinflip))	{
 		create_blocktomine(res, req,  house, req.user.googleId, req.body.amount, 'index', 'Main', '01')
 	}	else	{
-		create_blocktomine(res, req, req.user.googleId, house, req.body.amount, 'index', 'Main', '01')
+		create_blocktomine(res, req, req.user.googleId, house, req.body.amount, 'index', 'Main', '10')
 	}
 }
 
