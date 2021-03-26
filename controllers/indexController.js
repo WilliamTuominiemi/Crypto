@@ -55,8 +55,13 @@ const create_blocktomine = (res, req, sender, recipient, amount, page, title, co
 const send = (req, res) => {
 	User.find({googleId: req.user.googleId})
 	.then((result) =>	{
+		const amount_int = parseInt(req.body.amount)
+		const neg_amount_int = 0 - amount_int
 		if(result[0].crypto >= req.body.amount )	{
-			create_blocktomine(res, req,  req.user.googleId, req.body.recipient_id, req.body.amount, 'send', 'Main', '00')
+			User.findOneAndUpdate({ googleId: req.user.googleId }, {$inc : {'crypto' : neg_amount_int}})
+			.then(() => {
+				create_blocktomine(res, req,  req.user.googleId, req.body.recipient_id, req.body.amount, 'send', 'Main', '00')
+			})
 		}	else {
 			res.render('index', { title: 'Main', user: req.user, code: "51" })
 		}
@@ -108,12 +113,18 @@ const blockchain = (req, res) => {
 }
 
 const coinflip = (req, res) => {
-	const coin = Math.floor(Math.random() * 2)
-	if(coin === parseInt(req.body.coinflip))	{
-		create_blocktomine(res, req,  house, req.user.googleId, req.body.amount, 'index', 'Main', '01')
-	}	else	{
-		create_blocktomine(res, req, req.user.googleId, house, req.body.amount, 'index', 'Main', '10')
-	}
+	const amount_int = parseInt(req.body.amount)
+    const neg_amount_int = 0 - amount_int
+	
+	User.findOneAndUpdate({ googleId: req.user.googleId }, {$inc : {'crypto' : neg_amount_int}})
+    .then(() => {
+		const coin = Math.floor(Math.random() * 2)
+		if(coin === parseInt(req.body.coinflip))	{
+			create_blocktomine(res, req,  house, req.user.googleId, req.body.amount, 'index', 'Main', '01')
+		}	else	{
+			create_blocktomine(res, req, req.user.googleId, house, req.body.amount, 'index', 'Main', '10')
+		}
+	})
 }
 
 

@@ -61,8 +61,7 @@ class BlockChain {
 
                 User.findOneAndUpdate({ googleId: block.transactions[0].miner }, {$inc : {'crypto' : mining_reward}})
                 .then(() => {
-                    User.findOneAndUpdate({ googleId: block.transactions[0].sender }, {$inc : {'crypto' : neg_amount_int}})
-                    .then(() => {
+                    
                         User.findOneAndUpdate({ googleId: block.transactions[0].recipient }, {$inc : {'crypto' : amount_int}})   
                         .then(() => {
                             //Hash
@@ -73,7 +72,7 @@ class BlockChain {
                             this.curr_transactions = []
                             return block
                         })
-                    })            
+                                
                 })            
             })      
         }  
