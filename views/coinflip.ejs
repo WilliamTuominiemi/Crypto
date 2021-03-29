@@ -12,19 +12,19 @@
                 <% } %>
 
                 <h1> Join Coinflip </h1>
-                    <% coinflips.forEach(coinflip => { %>
-                        <h2> Coinflip by <%= coinflip.host %> </h2>
-                        <h3> Bet: <%= coinflip.bet %> </h3>
-                        <form action="/coinflip" method="post">
-                            <p>Available Glockoin: <b><%= user.crypto %></b> </p>
+                <% coinflips.forEach(coinflip => { %>
+                    <h2> Coinflip by <%= coinflip.host %> </h2>
+                    <h3> Bet: <%= coinflip.bet %> </h3>
+                    <form action="/coinflip" method="post">
+                        <p>Available Glockoin: <b><%= user.crypto %></b> </p>
     
-                            <input type="number" id="amount" name="amount" value="10" min="10" max="<%= user.crypto %>" ><br><br>
-                            <input type="radio" id="heads" name="coinflip" value="0">
-                            <input type="radio" id="tails" name="coinflip" value="1"><br><br>
+                        <input type="number" id="amount" name="amount" value="10" min="10" max="<%= user.crypto %>" ><br><br>
+                        <input type="radio" id="heads" name="coinflip" value="0">
+                        <input type="radio" id="tails" name="coinflip" value="1"><br><br>
                             
-                            <button  class="send" type="submit" value="submit">Play (<%= coinflip.bet %> GlocKoin %>) </button>
-                          </form> 
-                    <% }) %>
+                        <button  class="send" type="submit" value="submit">Play (<%= coinflip.bet %> GlocKoin %>) </button>
+                    </form> 
+                <% }) %>
                 <h1> Create Coinflip </h1>
                 <form action="/host/coinflip" method="post">
                     <input type="hidden" id="host" name="host" value="<%= user.googleId %>>"><br>
@@ -34,9 +34,5 @@
                 </form> 
             </div>
         </center>
-        
-        
-        
-        <!-- <button onclick="SecondLast()">Click me</button> -->
 	</body>
 </html>
