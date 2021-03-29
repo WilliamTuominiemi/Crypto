@@ -19,18 +19,17 @@
                         <p>Available Glockoin: <b><%= user.crypto %></b> </p>
     
                         <input type="number" id="amount" name="amount" value="10" min="10" max="<%= user.crypto %>" ><br><br>
-                        <input type="radio" id="heads" name="coinflip" value="0">
-                        <input type="radio" id="tails" name="coinflip" value="1"><br><br>
+                        <br><br>
                             
                         <button  class="send" type="submit" value="submit">Play (<%= coinflip.bet %> GlocKoin %>) </button>
                     </form> 
                 <% }) %>
                 <h1> Create Coinflip </h1>
                 <form action="/host/coinflip" method="post">
-                    <input type="hidden" id="host" name="host" value="<%= user.googleId %>>"><br>
-                    <label for="amount">Amount:</label><br>
-                    <input type="number" id="amount" name="amount" value="10" min="10" max="<%= user.crypto %>" ><br><br>
-                    <button  class="send" type="submit" value="submit">Send</button>
+                    <input type="hidden" id="host" name="host" value="<%= user.googleId %>"><br>
+                    <label for="amount"><h3>Bet:</h3></label><br>
+                    <input type="number" id="bet" name="bet" value="10" min="10" max="<%= user.crypto %>" ><br><br>
+                    <button  class="send" type="submit" value="submit">Host</button>
                 </form> 
             </div>
         </center>

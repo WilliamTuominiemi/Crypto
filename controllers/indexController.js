@@ -117,15 +117,17 @@ const blockchain = (req, res) => {
 const coinflip_page = (req, res) => {
 	Coinflip.find()
 	.then((result) => {
-		res.render('coinflip', { title: 'Coinflip', user: req.user, coinflips: result})
+		res.render('coinflip', { title: 'Coinflip', user: req.user, coinflips: result, code: '-'})
 	})
 }
 
 const coinflip_host = (req, res) => {
 	const body = {
-		host: req.body,
-		amount: req.amount
+		host: req.body.host,
+		bet: req.body.bet
 	}
+
+	console.log('body', body)
 	
 	const coinflip = new Coinflip(body)
 

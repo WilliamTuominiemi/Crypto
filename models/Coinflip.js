@@ -8,8 +8,8 @@ const CoinflipSchema = new Schema(
 			type: String,
 			required: true,
 		},
-		recipient: {
-			type: String,
+		bet: {
+			type: Number,
 			required: true
 		}
 	},
