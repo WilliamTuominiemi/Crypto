@@ -1,6 +1,8 @@
 const Transaction = require('../models/Transaction')
 const User = require('../models/User')
 const BlockToMine = require('../models/BlockToMine')
+const Coinflip = require('../models/Coinflip')
+
 
 let BlockChain = require('../src/blockChain')
 let BlockChainModel = require('../src/database/model')
@@ -110,6 +112,13 @@ const blockchain = (req, res) => {
 		else res.render('blockchain', { title: 'Main', user: req.user, blockchain: result })
 	})
 	
+}
+
+const coinflip_page = (req, res) => {
+	Coinflip.find()
+	.then((result) => {
+		res.render('coinflip', { title: 'Coinflip', user: req.user, coinflips: result})
+	})
 }
 
 const coinflip = (req, res) => {
