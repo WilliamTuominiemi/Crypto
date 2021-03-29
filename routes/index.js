@@ -10,6 +10,7 @@ router.get('/mine', indexController.mine_page)
 router.get('/blockchain', indexController.blockchain)
 router.get('/coinflip', indexController.coinflip_page)
 
+router.post('/host/coinflip', indexController.coinflip_host)
 router.post('/coinflip', indexController.coinflip)
 router.post('/mine', indexController.mine)
 router.post('/send', indexController.send)
