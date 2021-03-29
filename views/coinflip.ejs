@@ -12,18 +12,21 @@
                 <% } %>
 
                 <h1> Join Coinflip </h1>
-                <% coinflips.forEach(coinflip => { %>
-                    <h2> Coinflip by <%= coinflip.host %> </h2>
-                    <h3> Bet: <%= coinflip.bet %> </h3>
-                    <form action="/coinflip" method="post">
-                        <p>Available Glockoin: <b><%= user.crypto %></b> </p>
-    
-                        <input type="number" id="amount" name="amount" value="10" min="10" max="<%= user.crypto %>" ><br><br>
-                        <br><br>
-                            
-                        <button  class="send" type="submit" value="submit">Play (<%= coinflip.bet %> GlocKoin %>) </button>
-                    </form> 
-                <% }) %>
+                <p>Available Glockoin: <b><%= user.crypto %></b> </p>
+                <div class="coinflip_container">
+                    <% coinflips.forEach(coinflip => { %>
+                            <div class="coinflip_host">
+                                <h2> Coinflip by <%= coinflip.host %> </h2>
+                                <h3> Bet: <%= coinflip.bet %> </h3>
+                                <form action="/coinflip" method="post">
+                                    <input type="hidden" id="host" name="host" value="<%= coinflip.host %>">
+                                    <input type="hidden" id="challenger" name="challenger" value="<%= user.googleId %>">
+                                    <input type="hidden" id="bet" name="bet" value="<%= coinflip.bet %>">
+                                    <button  class="send" type="submit" value="submit">Play (<%= coinflip.bet %> GlocKoin ) </button>
+                                </form> 
+                            </div>
+                    <% }) %>
+                </div>  
                 <h1> Create Coinflip </h1>
                 <form action="/host/coinflip" method="post">
                     <input type="hidden" id="host" name="host" value="<%= user.googleId %>"><br>
