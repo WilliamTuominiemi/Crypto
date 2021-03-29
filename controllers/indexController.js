@@ -121,6 +121,20 @@ const coinflip_page = (req, res) => {
 	})
 }
 
+const coinflip_host = (req, res) => {
+	const body = {
+		host: req.body,
+		amount: req.amount
+	}
+	
+	const coinflip = new Coinflip(body)
+
+	coinflip.save()
+	.then((result) => {
+		res.redirect('/coinflip')
+	})
+}
+
 const coinflip = (req, res) => {
 	const amount_int = parseInt(req.body.amount)
     const neg_amount_int = 0 - amount_int
@@ -145,5 +159,7 @@ module.exports = {
 	mine,
 	blockchain,
 	coinflip,
-	send_page
+	send_page,
+	coinflip_page,
+	coinflip_host
 }
