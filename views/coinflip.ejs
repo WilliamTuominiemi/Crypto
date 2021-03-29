@@ -5,6 +5,12 @@
 		<%- include("./partials/nav.ejs") %>
         <center>
             <div class="main-data">
+                <% if(code === "10") { %>
+                    <div class="code51">YOU LOST</div><br><br>
+                <% } else if(code === "01") { %>
+                    <div class="code00">YOU WON</div><br><br>
+                <% } %>
+
                 <h1> Join Coinflip </h1>
                     <% coinflips.forEach(coinflip => { %>
                         <h2> Coinflip by <%= coinflip.host %> </h2>

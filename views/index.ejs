@@ -14,22 +14,7 @@
                     </a>
                 <% } else { %>
                     <h3> Coinflip </h3>
-                    <form action="/coinflip" method="post">
-                        <p>Available Glockoin: <b><%= user.crypto %></b> </p>
-
-                        <label for="amount">Amount:</label><br>
-                        <input type="number" id="amount" name="amount" value="10" min="10" max="<%= user.crypto %>" ><br><br>
-                        <label for="heads">Heads</label>
-                        <input type="radio" id="heads" name="coinflip" value="0">
-                        <label for="tails">Tails</label>
-                        <input type="radio" id="tails" name="coinflip" value="1"><br><br>
-                        <% if(code === "10") { %>
-                            <div class="code51">YOU LOST</div><br><br>
-                        <% } else if(code === "01") { %>
-                            <div class="code00">YOU WON</div><br><br>
-                        <% } %>
-                        <button  class="send" type="submit" value="submit">Play</button>
-                      </form> 
+                    <a href="/coinflip"> Play </a>
                 <% } %>        
             </div>
         </center>
