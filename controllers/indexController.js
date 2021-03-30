@@ -148,16 +148,18 @@ const coinflip = (req, res) => {
 	console.log(req.body)
 	const amount_int = parseInt(req.body.bet)
     const neg_amount_int = 0 - amount_int
-	
-	User.findOneAndUpdate({ googleId: req.body.challenger }, {$inc : {'crypto' : neg_amount_int}})
-    .then(() => {
-		const coin = Math.floor(Math.random() * 2)
-		if(coin === 0)	{
-			create_blocktomine(res, req,  req.body.host, req.body.challenger, req.body.bet, 'index', 'Main', '01')
-		}	else if(coin === 1)	{
-			create_blocktomine(res, req, req.body.challenger, req.body.host, req.body.bet, 'index', 'Main', '10')
-		}
-	})
+	Coinflip.findOneAndDelete({ _id: req.body.id })
+	.then((result) => {
+		User.findOneAndUpdate({ googleId: req.body.challenger }, {$inc : {'crypto' : neg_amount_int}})
+		.then(() => {
+			const coin = Math.floor(Math.random() * 2)
+			if(coin === 0)	{
+				create_blocktomine(res, req,  req.body.host, req.body.challenger, req.body.bet, 'index', 'Main', '01')
+			}	else if(coin === 1)	{
+				create_blocktomine(res, req, req.body.challenger, req.body.host, req.body.bet, 'index', 'Main', '10')
+			}
+		})
+	})	
 }
 
 

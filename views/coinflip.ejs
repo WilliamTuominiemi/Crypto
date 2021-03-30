@@ -19,6 +19,7 @@
                                 <h2> Coinflip by <%= coinflip.host %> </h2>
                                 <h3> Bet: <%= coinflip.bet %> </h3>
                                 <form action="/coinflip" method="post">
+                                    <input type="hidden" id="id" name="id" value="<%= coinflip._id %>">
                                     <input type="hidden" id="host" name="host" value="<%= coinflip.host %>">
                                     <input type="hidden" id="challenger" name="challenger" value="<%= user.googleId %>">
                                     <input type="hidden" id="bet" name="bet" value="<%= coinflip.bet %>">
