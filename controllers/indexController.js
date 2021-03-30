@@ -133,21 +133,29 @@ const coinflip_host = (req, res) => {
 
 	coinflip.save()
 	.then((result) => {
-		res.redirect('/coinflip')
+		const amount_int = parseInt(req.body.bet)
+		const neg_amount_int = 0 - amount_int
+		
+		User.findOneAndUpdate({ googleId: req.body.host }, {$inc : {'crypto' : neg_amount_int}})
+		.then(() => {
+			res.redirect('/coinflip')
+		})
 	})
 }
 
 const coinflip = (req, res) => {
-	const amount_int = parseInt(req.body.amount)
+	
+	console.log(req.body)
+	const amount_int = parseInt(req.body.bet)
     const neg_amount_int = 0 - amount_int
 	
-	User.findOneAndUpdate({ googleId: req.user.googleId }, {$inc : {'crypto' : neg_amount_int}})
+	User.findOneAndUpdate({ googleId: req.body.challenger }, {$inc : {'crypto' : neg_amount_int}})
     .then(() => {
 		const coin = Math.floor(Math.random() * 2)
-		if(coin === parseInt(req.body.coinflip))	{
-			create_blocktomine(res, req,  house, req.user.googleId, req.body.amount, 'index', 'Main', '01')
-		}	else	{
-			create_blocktomine(res, req, req.user.googleId, house, req.body.amount, 'index', 'Main', '10')
+		if(coin === 0)	{
+			create_blocktomine(res, req,  req.body.host, req.body.challenger, req.body.bet, 'index', 'Main', '01')
+		}	else if(coin === 1)	{
+			create_blocktomine(res, req, req.body.challenger, req.body.host, req.body.bet, 'index', 'Main', '10')
 		}
 	})
 }
