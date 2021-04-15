@@ -31,6 +31,9 @@ require('./config/passport')(passport)
 // Express app
 const app = express()
 
+// Enable secure connection (https://)
+app.enable("trust proxy");
+
 // Port number
 const PORT1 = process.env.PORT || 3000
 
